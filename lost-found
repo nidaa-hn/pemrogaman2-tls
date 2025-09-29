@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+string buatSandi(const string &kata) {
+    if (kata.empty()) return "Input Kosong";
+
+    string sandi;
+    int kode = (int)kata[0];
+
+    for (int i = kata.size() -1; i >= 0; i--) {
+        char c = tolower(kata[i]);
+        if (c !='a' && c!='i' && c!='u' && c!='e' && c!='o')
+            sandi += kata[i];
+        
+    }
+
+    sandi.insert(sandi.size()/2, to_string(kode));
+    return sandi;
+
+}
+
+string bongkarSandi(const string &sandi) {
+    string huruf, angka;
+    for (char c : sandi) {
+        if (isdigit(c)) angka += c;
+        else huruf += c;
+    }
+    reverse(huruf.begin(), huruf.end());
+    if (!angka.empty()) {
+        char depan = (char)stoi(angka);
+        if (depan != huruf[0]) huruf.insert(huruf.begin(), depan); 
+    }
+    return huruf;
+}
+
+int main () {
+    int pilih;
+    cout << "Cari Kata Sandi (1) atau Kata Asli (2) ? ";
+    cin >> pilih;
+
+    string input;
+    cin >> input;
+
+    if (pilih == 1) cout << "Kata sandi : " << buatSandi(input) << endl;
+    else if (pilih == 2) cout << "Kerangka kata asli : " << bongkarSandi(input) << endl;
+    else cout << "Pilihan tidak tersedia" << endl;
+
+}
