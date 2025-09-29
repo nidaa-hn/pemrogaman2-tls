@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int detik;
+    cout << "Masukkan jumlah detik: ";
+    cin >> detik;
+
+    // hitung posisi siklus
+    int sisa = (detik - 24) % 103;
+
+    string lampu;
+    if (sisa >= 1 && sisa <= 20) {
+        lampu = "Hijau";
+    } else if (sisa >= 21 && sisa <= 23) {
+        lampu = "Kuning";
+    } else {
+        lampu = "Merah";
+    }
+
+    cout << "Lampu: " << lampu << endl;
+    return 0;
+}
